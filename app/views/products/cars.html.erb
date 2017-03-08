@@ -1,1 +1,10 @@
-<%= @cars.title %>
+
+<p>ALL CARS</p>
+
+<% @cars.each do |car| %>
+  <h2>This Is Your Car</h2>
+  <p><%= car.title %></p>
+  <p><%= car.price %></p>
+  <p><%= car.description %></p>
+  <p><%= car.image %></p>
+<% end %>
