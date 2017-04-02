@@ -1,0 +1,24 @@
+<%if session[:user_id]%>  
+  <h4>Welcome! <%= current_user.name %></h4>
+<%end %>
+
+<h1 align="center"> Here are all your cars!</h1>
+
+<% @sorted_products.each_slice(3) do |three_cars| %>
+  <div class="row">
+    <% three_cars.each do |car| %>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <img src="https://www.lamborghini.com/en-en/sites/en-en/files/DAM/lamborghini/share%20img/aventador-coupe-facebook-og.jpg" alt="...">
+            <div class="caption">
+              <h3>Car <%= car.id %></h3>
+              <p>Name: <%= car.title %></p>
+              <p>Price: $<%= car.price %></p>
+              <p>Description: <%= car.description %></p>
+              <p><a href="/products/<%= car.id %>" class="btn btn-primary" role="button">View</a> </a></p>
+            </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

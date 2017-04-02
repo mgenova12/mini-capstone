@@ -1,0 +1,14 @@
+<h2>Order Recipt</h2>
+
+
+<% @order.carted_products.each do |carted_product| %>
+
+  <h4>Name: <%= carted_product.product.title %></h4>
+  <p>Price: <%= number_to_currency(carted_product.product.price) %> </p>
+  <p>Quantity: <%= carted_product.quantity %> </p> 
+  <p>Total: <%= number_to_currency(carted_product.quantity *  carted_product.product.price) %></p>
+  <p> ------------------------------------------------------</p>
+<% end %>
+<h4>Subtotal: <%= number_to_currency(@order.subtotal) %></h4>
+<h4>Tax: <%= number_to_currency(@order.tax) %></h4>
+<h3>Total: <%= number_to_currency(@order.total) %></h3>

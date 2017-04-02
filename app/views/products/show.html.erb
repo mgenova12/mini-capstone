@@ -1,0 +1,31 @@
+<% if current_user.admin  %>
+  <ul class="nav nav-tabs">
+
+    <li role="presentation" ><a href='/products/<%= @product.id %>/edit'>Edit Car</a></li>
+
+  </ul>
+<% end %>
+
+<h1>HERE IS PRODUCT <%= @product.id %></h1>
+<p>Supplier: <%= @product.supplier.name %> </p>
+<p>Title: <%= @product.title %></p>
+<p>Price: $<%= @product.price %></p>
+<p>Tax: $<%= @product.tax %> </p>
+<p>Total: $<%= @product.total %> </p>
+<p>Sale: <%= @product.sale_message %> </p>
+<p>Description: <%= @product.description %></p>
+
+<% @product.images.each do |image| %>
+
+  <p>Image Link: <%= image.url %> </p>
+
+<%end %>
+
+<%= form_tag "/cart/#{@product.id}", method: :post do  %>
+
+Quantity<input type="text" name="quantity">
+
+  <input type="submit" value="Add to cart">
+
+<% end  %>
+

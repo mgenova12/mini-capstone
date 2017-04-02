@@ -3,12 +3,61 @@
   <head>
     <title>MiniCapstone</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag   'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
+    <ul class="nav nav-tabs">
+      <% if current_user %>
+        <li role="presentation" class="active"><a href="/products">Home</a></li>
+        <li role="presentation"><a href="/products/new">Add Car</a></li>
+        <li role="presentation"><a href="/products?sorted=price_sort">Sort by price</a></li>
+        <li role="presentation"><a href="/products?sorted=price_sort_desc">Sort price desending</a></li>
+        <li role="presentation"><a href="/products?sorted=discount">Discount Items</a></li>
+      <% end %>
+      <% if current_user %>
+          <li role="presentation"><a href="/logout">Logout</a></li>
+      <% else  %>
+          <li role="presentation"><a href="/login">Log in</a></li>
+          <li role="presentation"><a href="/signup">Sign Up</a></li>
+      <% end %>
+      <% if current_user %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+            <li><a href="/products?category=<%=category.name%>"><%= category.name %></a></li>
+            <%  end  %>
+          </ul>
+        </li>
+      <li role="presentation"><a href="/cart">Check Out</a></li>
+
+      <li> 
+         <%= form_tag "/products", method: :get, class: "navbar-form navbar-left" do %>
+          <button type="submit" class="btn btn-default">Submit</button>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" name= "search_term">
+          </div>
+        <% end %>
+      </li>
+      <%end %>
+    </ul>
+
+
+  <% flash.each do |name,message| %>
+      <div class="alert alert-<%= name %>" role="alert">
+          <%= message %>
+      </div>
+
+  <% end %>
+  
+
+  <div class="container-fluid">
+
     <%= yield %>
+  </div>
+
   </body>
 </html>
