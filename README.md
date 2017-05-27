@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This a rails app that that allows users to purchase items.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Key Functions 
+- User can sort by price, discounted items, or specific product type 
+- User can search products by name 
+- User can create edit destory a product 
+- User can add a product to their shopping cart 
+- User can purchase a product 
